@@ -63,7 +63,7 @@ button {
   background-color: #fefff5;
   color: black;
 }
-.wrapperAbsence {
+.item-v {
   flex-direction: column;
   padding-left: 16px;
   padding-right: 16px;
@@ -95,7 +95,7 @@ button {
   max-width: max-content;
 }
 
-#menuAbsence {
+.menu-h {
   display: flex;
   flex-direction: row;
   align-items: end;
