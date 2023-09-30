@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="script.js" defer></script>
+
+
+</head>
+<body>
+    <main>
+      <h2>Calcul des délais de rupture conventionnelle</h2>
+      <div id="blocDelais">
+        <div class="wrapperDate">
+          <p>Date de signature de la convention de rupture :</p> 
+          <input id="saisieDateSignature" type=date >
+          <button id="boutonDelais">Envoi</button>
+        </div>
+        <div id="wrapperCalendrier">
+         
+        </div>
+        
+      </div>
+
+      <h2>Calcul de l'ancienneté</h2>
+      <div id="menuAbsence">
+      <div class="wrapperAbsence">
+        <p>Date d'embauche</p>
+        <input id="dateEmbauche" type=date>
+    </div>
+    <div class="wrapperAbsence">
+        <p>Date de rupture</p>
+        <input id="dateRupture" type=date>
+    </div>
+  </div>
+
+      <h3>Décompte des absences</h2>
+      <div id="blocAbsence">
+
+        <div class="decompteAbsence">
+        <div id="menuAbsence">
+          
+        <div class="wrapperAbsence">
+          <p><label for="natureAbsence">Nature de l'absence</label></p>
+          <select name="natureAbsence" id="natureAbsence">
+            <option value="1">Absence maladie, sans solde ....</option>
+            <option value="0.5">Congé parental</option>
+          </select>
+        </div>
+   
+        <div class="wrapperAbsence">
+            <p>Début d'absence</p>
+            <input id="debutAbsence" type=date>
+        </div>
+        <div class="wrapperAbsence">
+            <p>Fin d'absence</p>
+            <input id="finAbsence" type=date>
+        </div>
+        <button id="ajout">Ajout</button>
+      </div>
+          <div id="datesEnregistrees">
+          </div>
+          
+
+        </div> 
+          
+
+       
+      </div> 
+
+        
+    </main>
+
+
+
+</body>
+</html>

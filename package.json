@@ -1,0 +1,16 @@
+{
+  "name": "rupture",
+  "version": "1.0",
+  "main": "main.js",
+  "license": "MIT",
+  "description": "Outil de simulation de rupture de contrat de travail (délais de rupture conventionnelle, indemnités de licenciement, de rupture conventionnelle, de départ en retraite...)",
+  "author": "Tristan Laroye",
+  "devDependencies": {
+    "electron": "^26.2.3",
+    "eslint": "^8.50.0"
+  },
+  "scripts": {
+    "start": "electron .",
+    "lint": "eslint *.js"
+  }
+}

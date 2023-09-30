@@ -1,0 +1,131 @@
+body {
+  background-color: #141517;
+  color: #fefff5;
+}
+
+main {
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+h2 {
+  text-align: left;
+}
+.wrapperDate {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.wrapperDate input {
+  max-height: 16px;
+  margin-left: 32px;
+}
+
+#calendrier {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  width: 45%;
+  justify-content: space-between;
+}
+
+#calendrier div {
+  display: flex;
+  flex-direction: row;
+  font-size: small;
+  flex-wrap: wrap;
+}
+
+#calendrier div p {
+  padding: 0px;
+  margin: 0px;
+  border-bottom: solid;
+  border-width: 0.1em;
+  border-color: rgb(119, 119, 119);
+}
+
+#calendrier div p:first-child {
+  width: 50%;
+}
+button {
+  border: none;
+  padding-left: 12px;
+  padding-right: 12px;
+  margin-left: 16px;
+  text-align: center;
+  text-decoration: none;
+
+  background-color: #fefff5;
+  color: black;
+}
+.wrapperAbsence {
+  flex-direction: column;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+#datesEnregistrees div {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: end;
+}
+
+#datesEnregistrees button {
+  margin-left: 48px;
+}
+
+#blocAbsence {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+#blocDelais {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  max-width: max-content;
+}
+
+#menuAbsence {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  padding-bottom: 16px;
+}
+
+#affichageTotalAbsence {
+  padding: 8px 8px 8px 0px;
+  font-size: larger;
+}
+
+#wrapperCalendrier {
+  display: flex;
+  flex-direction: row;
+}
+#notice {
+  max-width: 30%;
+  padding: 8px;
+  text-align: justify;
+  animation: fadein 4s;
+  font-style: italic;
+  font-size: small;
+  color: rgb(148, 172, 245);
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
