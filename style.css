@@ -13,19 +13,10 @@ main {
 h2 {
   text-align: left;
 }
-.wrapperDate {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-}
 
-.wrapperDate input {
-  max-height: 16px;
-  margin-left: 32px;
+#saisieDateSignature{
+  margin : 8px;
 }
-
 #calendrier {
   display: flex;
   flex-direction: column;
@@ -98,7 +89,7 @@ button {
 .menu-h {
   display: flex;
   flex-direction: row;
-  align-items: end;
+  align-items:last baseline;
   padding-bottom: 16px;
 }
 
