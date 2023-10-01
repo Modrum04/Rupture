@@ -29,7 +29,7 @@ export function calculAnciennete(){
         affichageAnciennete.innerText=`L'ancienneté décomptée est de ${Math.floor(ancienneteA)} ${ancienneteA > 2 ? "ans" : "an"} et ${Math.floor(ancienneteDecimalM)} mois
         absences décomptées : ${absenceAdeduire} jours`
     }else{
-        affichageAnciennete.innerText=''
+        affichageAnciennete.innerText="L'ancienneté calculée est nulle"
     }
 
 }
