@@ -1,7 +1,9 @@
+import {calculAnciennete} from './anciennete.js'
+
 const debutAbsence = document.getElementById("debutAbsence");
 const finAbsence = document.getElementById("finAbsence");
 const natureAbsence = document.getElementById("natureAbsence");
-const tabAbsence = [];
+export const tabAbsence = [];
 let id = 0;
 let totalAbsence = 0;
 
@@ -68,16 +70,17 @@ function addDate(debutAbsence, finAbsence, tabAbsence) {
         elem.id === parseInt(event.currentTarget.id) &&
         elem.duree === dateResult,
     );
-    console.log(indexAbsence);
     tabAbsence.splice(indexAbsence, 1);
-    calculTotalAbsence(tabAbsence);
-  });
+    calculAnciennete()
 
-  calculTotalAbsence(tabAbsence);
+
+  });
+  calculAnciennete()
+
 }
 
 ///Calcul du total d'absence
-function calculTotalAbsence(tabAbsence) {
+export function calculTotalAbsence(tabAbsence) {
   let ligneSaisie = document.getElementById("affichageTotalAbsence");
   if (ligneSaisie === null) {
     ligneSaisie = document.createElement("div");
@@ -96,4 +99,12 @@ function calculTotalAbsence(tabAbsence) {
   } else {
     ligneSaisie.innerHTML = "";
   }
+ console.log("total absence calculé :"+totalAbsence)
+
+  return totalAbsence
 }
+
+
+
+
+
