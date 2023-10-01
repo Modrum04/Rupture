@@ -1,4 +1,6 @@
-export function renvoiDate() {
+document.getElementById("boutonDelais").addEventListener("click",()=>calculDelais()) ///BLOC DES DELAIS
+
+export function calculDelais() {
   const tabFeries = [
     "01/01",
     "21/04",

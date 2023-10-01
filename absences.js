@@ -1,14 +1,16 @@
 import {calculAnciennete} from './anciennete.js'
+export const tabAbsence = [];
 
 const debutAbsence = document.getElementById("debutAbsence");
 const finAbsence = document.getElementById("finAbsence");
 const natureAbsence = document.getElementById("natureAbsence");
-export const tabAbsence = [];
+
 let id = 0;
 let totalAbsence = 0;
+document.getElementById("ajout").addEventListener("click",()=> controleDatesAbsence ()) ///AJOUT DES ABSENCES
 
 ///fonction controle des dates
-export function controleDate() {
+export function controleDatesAbsence() {
   if (debutAbsence.value === "" || finAbsence.value === "") {
     alert("Les dates de début et de fin doivent être renseignées");
   } else if (debutAbsence.value > finAbsence.value) {

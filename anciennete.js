@@ -1,4 +1,5 @@
 import { calculTotalAbsence,tabAbsence } from "./absences.js"
+
 const affichageAnciennete = document.getElementById("affichageAnciennete")
 const dateEmbauche = document.getElementById("dateEmbauche")
 const dateRupture = document.getElementById("dateRupture")
@@ -21,6 +22,7 @@ dateEmbauche.addEventListener("change",()=>{
 
 
 export function calculAnciennete(){
+    //const absenceAdeduire = 0
     const absenceAdeduire = calculTotalAbsence(tabAbsence)
     const ancienneteJ = (((Date.parse(dateRupture.value))-(Date.parse(dateEmbauche.value))) / (8.64 * Math.pow(10, 7)) + 1)-absenceAdeduire
     const ancienneteA = ancienneteJ/365.25
