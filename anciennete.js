@@ -20,9 +20,7 @@ dateEmbauche.addEventListener("change",()=>{
        }
  })
 
-
 export function calculAnciennete(){
-    //const absenceAdeduire = 0
     const absenceAdeduire = calculTotalAbsence(tabAbsence)
     const ancienneteJ = (((Date.parse(dateRupture.value))-(Date.parse(dateEmbauche.value))) / (8.64 * Math.pow(10, 7)) + 1)-absenceAdeduire
     const ancienneteA = ancienneteJ/365.25
@@ -33,5 +31,4 @@ export function calculAnciennete(){
     }else{
         affichageAnciennete.innerText="L'ancienneté calculée est nulle"
     }
-
 }

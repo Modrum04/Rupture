@@ -26,10 +26,8 @@ function addDate(debutAbsence, finAbsence, tabAbsence) {
   const absence = { id: "", duree: "" };
   const zoneAbsencesEnregistree = document.getElementById("datesEnregistrees");
   const ligne = document.createElement("div");
-  const dateDebut = new Date(debutAbsence.value);
-  const dateFin = new Date(finAbsence.value);
   const dateResult =
-    ((dateFin - dateDebut) / (8.64 * Math.pow(10, 7)) + 1) *
+    (((new Date(finAbsence.value)) - (new Date(debutAbsence.value))) / (8.64 * Math.pow(10, 7)) + 1) *
     natureAbsence.value;
 
   ///vérification que l'id n'existe pas déjà dans tabAbsence pour éviter un blocage lors de la suppression de l'absence de l'affichage du DOM

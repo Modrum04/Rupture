@@ -1,2 +1,2 @@
-import {   } from "./delais.js"
-import {  } from "./anciennete.js"
+import {} from "./delais.js"
+import {} from "./anciennete.js"
