@@ -8,6 +8,8 @@ main {
   display: flex;
   flex-direction: column;
   margin: auto;
+  border: solid;
+  padding: 32px;
 }
 
 h2 {
@@ -50,14 +52,17 @@ button {
   margin-left: 16px;
   text-align: center;
   text-decoration: none;
-
   background-color: #fefff5;
   color: black;
 }
+
 .item-v {
   flex-direction: column;
   padding-left: 16px;
   padding-right: 16px;
+  padding-bottom: 8px;
+  display: flex;
+  max-width: fit-content;
 }
 
 #datesEnregistrees div {
@@ -90,7 +95,13 @@ button {
   display: flex;
   flex-direction: row;
   align-items:last baseline;
-  padding-bottom: 16px;
+  flex-wrap: wrap;
+  max-width: inherit;
+  padding-bottom: 8px;
+}
+
+.menu-h label {
+  margin-right: 8px;
 }
 
 #affichageTotalAbsence {
@@ -110,6 +121,11 @@ button {
   font-style: italic;
   font-size: small;
   color: rgb(148, 172, 245);
+}
+
+input[type=number] {
+  appearance: textfield;
+  width: 70%;
 }
 
 @keyframes fadein {
