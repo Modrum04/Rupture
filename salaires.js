@@ -29,7 +29,6 @@ dernierMois.addEventListener("change", () => displayMoisDeSalaire());
 dernierAnnee.addEventListener("change", () => displayMoisDeSalaire());
 
 
-
 function displayMoisDeSalaire() {
   now = new Date(dernierAnnee.value, dernierMois.value, 1);
   moisSalaireRef.innerHTML = "";
@@ -51,8 +50,28 @@ function displayMoisDeSalaire() {
     moisSalaireRef.appendChild(el);
     el.appendChild(labelMoisSalaire);
     el.appendChild(moisSalaire);
+    document.getElementById(mois).addEventListener("change", ()=>calculSalaireRef())
   }
 }
+
 function calculSalaireRef() {
-    
+const blocSalaireReference = document.getElementById("blocSalaireReference")
+let affichageSalaireReference = document.getElementById("affichageSalaireReference");
+
+if (affichageSalaireReference === null) {
+  affichageSalaireReference = document.createElement("div");
+  affichageSalaireReference.setAttribute("id", "affichageSalaireReference");
+} else {
+  affichageSalaireReference = document.getElementById("affichageSalaireReference");
+}
+let tabSalaires = Array.from(moisSalaireRef,(x) => isNaN(parseFloat(x.value)) ? x.value=0 : parseFloat(x.value) )
+let salaireRef = 0
+const moyenneTrois = tabSalaires.reduce((acc,element,i)=> i>2 ? acc :  acc+element)/3
+const moyenneDouze = tabSalaires.reduce((acc,element)=> acc+element )/12
+moyenneDouze < moyenneTrois ?  salaireRef = moyenneTrois : salaireRef = moyenneDouze
+
+
+affichageSalaireReference.innerText = salaireRef === 0 ? "" : `Salaire de référence : ${Math.round(salaireRef*100)/100} euros`
+blocSalaireReference.appendChild(affichageSalaireReference)
+return salaireRef
 }

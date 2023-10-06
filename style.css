@@ -104,7 +104,7 @@ button {
   margin-right: 8px;
 }
 
-#affichageTotalAbsence {
+#affichageTotalAbsence, #affichageSalaireReference {
   padding: 8px 8px 8px 0px;
   font-size: larger;
 }

@@ -24,7 +24,7 @@ export function controleDatesAbsence() {
 ///fonction d'ajout d'absence
 function addDate(debutAbsence, finAbsence, tabAbsence) {
   const absence = { id: "", duree: "" };
-  const zoneAbsencesEnregistree = document.getElementById("datesEnregistrees");
+  const datesEnregistrees = document.getElementById("datesEnregistrees");
   const ligne = document.createElement("div");
   const dateResult =
     (((new Date(finAbsence.value)) - (new Date(debutAbsence.value))) / (8.64 * Math.pow(10, 7)) + 1) *
@@ -43,7 +43,7 @@ function addDate(debutAbsence, finAbsence, tabAbsence) {
   absence.duree = dateResult;
   tabAbsence.push(absence);
 
-  zoneAbsencesEnregistree.appendChild(ligne);
+  datesEnregistrees.appendChild(ligne);
   ligne.setAttribute("id", "ligne " + id);
   ligne.innerText = `Du ${debutAbsence.valueAsDate.toLocaleDateString(
     "fr",
@@ -88,8 +88,8 @@ export function calculTotalAbsence(tabAbsence) {
   } else {
     ligneSaisie = document.getElementById("affichageTotalAbsence");
   }
-  const zoneAbsencesEnregistree = document.getElementById("blocAbsence");
-  zoneAbsencesEnregistree.appendChild(ligneSaisie);
+  const datesEnregistrees = document.getElementById("blocAbsence");
+  datesEnregistrees.appendChild(ligneSaisie);
   totalAbsence = 0;
   for (let i = 0; i < tabAbsence.length; i++) {
     totalAbsence += tabAbsence[i].duree;
