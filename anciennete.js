@@ -1,4 +1,7 @@
 import { calculTotalAbsence,tabAbsence } from "./absences.js"
+import { calculSalaireRef } from "./salaires.js"
+import { calculIndemnites } from "./indemnites.js"
+
 
 const affichageAnciennete = document.getElementById("affichageAnciennete")
 const dateEmbauche = document.getElementById("dateEmbauche")
@@ -7,16 +10,18 @@ const dateRupture = document.getElementById("dateRupture")
 dateRupture.addEventListener("change",()=>{
     affichageAnciennete.innerText=''
    if(dateRupture.value !== "" && dateEmbauche.value !== ""){
-    console.log(dateRupture.value)
     calculAnciennete()
+    calculSalaireRef()
+    calculIndemnites()
    }
 })
 
 dateEmbauche.addEventListener("change",()=>{
     affichageAnciennete.innerText=''
     if(dateRupture.value !== "" && dateEmbauche.value !== ""){
-        console.log(dateRupture.value)
         calculAnciennete()
+        calculSalaireRef()
+        calculIndemnites()
        }
  })
 
@@ -32,6 +37,5 @@ export function calculAnciennete(){
     }else{
         affichageAnciennete.innerText="L'ancienneté calculée est nulle"
     }
-    return ancienneteJ
-
+    return ancienneteA
 }

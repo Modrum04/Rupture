@@ -1,4 +1,6 @@
 import {calculAnciennete} from './anciennete.js'
+import { calculIndemnites } from './indemnites.js';
+import { calculSalaireRef } from './salaires.js';
 export const tabAbsence = [];
 
 const debutAbsence = document.getElementById("debutAbsence");
@@ -72,11 +74,14 @@ function addDate(debutAbsence, finAbsence, tabAbsence) {
     );
     tabAbsence.splice(indexAbsence, 1);
     calculAnciennete()
+    calculSalaireRef()
+    calculIndemnites()
 
 
   });
   calculAnciennete()
-
+  calculSalaireRef()
+  calculIndemnites()
 }
 
 ///Calcul du total d'absence

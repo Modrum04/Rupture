@@ -1,3 +1,4 @@
+import {calculIndemnites} from "./indemnites.js"
 const moisSalaireRef = document.getElementById("moisSalaireRef");
 const dernierMois = document.getElementById("dernierMois");
 const dernierAnnee = document.getElementById("annee");
@@ -51,7 +52,7 @@ function displayMoisDeSalaire() {
     el.appendChild(moisSalaire);
     document
       .getElementById(mois)
-      .addEventListener("change", () => calculSalaireRef());
+      .addEventListener("change", () => {calculSalaireRef(),calculIndemnites()});
   }
 }
 
@@ -74,16 +75,16 @@ export function calculSalaireRef() {
   );
   let salaireRef = 0;
   const moyenneTrois =
-    tabSalaires.reduce((acc, element, i) => (i > 2 ? acc : acc + element)) / 3;
-  const moyenneDouze = tabSalaires.reduce((acc, element) => acc + element) / 12;
+    tabSalaires.reduce((acc, element, i) => (i > 2 ? acc : acc + element),0) / 3;
+  const moyenneDouze = tabSalaires.reduce((acc, element) => acc + element,0) / 12;
   moyenneDouze < moyenneTrois
-    ? (salaireRef = moyenneTrois)
-    : (salaireRef = moyenneDouze);
+    ? (salaireRef = Math.round(moyenneTrois*100)/100)
+    : (salaireRef = Math.round(moyenneDouze*100)/100);
 
   affichageSalaireReference.innerText =
     salaireRef === 0
       ? ""
-      : `Salaire de référence : ${Math.round(salaireRef * 100) / 100} euros`;
+      : `Salaire de référence : ${salaireRef} euros`;
   blocSalaireReference.appendChild(affichageSalaireReference);
   return salaireRef;
 }

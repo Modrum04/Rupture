@@ -136,3 +136,21 @@ input[type=number] {
     opacity: 1;
   }
 }
+
+@media screen and (max-width: 800px){
+  #wrapperCalendrier {
+    flex-direction: column;
+  }
+  #notice, #calendrier {
+    max-width : 100%;
+    width: 100%;
+    
+  }
+  #calendrier div p:first-child {
+    width: fit-content;
+  }
+
+  #calendrier div {
+    justify-content: space-between;
+  }
+}
