@@ -15,7 +15,6 @@
         <div class="menu-h">
           <p>Date de signature de la convention de rupture :</p>
           <input id="saisieDateSignature" type="date" />
-          <button id="boutonDelais">Envoi</button>
         </div>
         <div id="wrapperCalendrier"></div>
       </div>
@@ -81,8 +80,13 @@
         </div>
         <form action="" class="menu-h" id="moisSalaireRef"></form>
       </div>
+      <h2>Calcul des indemnités</h2>
       <div id="blocIndemnites">
-        
+        <label for="selectorNatureRupture" >Nature de rupture</label>
+        <select name="selectorNatureRupture" id="selectorNatureRupture">
+          <option value="Licenciement">Licenciement, Rupture conventionnelle, Mise à la retraite...</option>
+          <option value="departRetraite">Départ volontaire à la retraite</option>
+        </select>
       </div>
     </main>
   </body>

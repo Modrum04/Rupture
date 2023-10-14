@@ -1,25 +1,14 @@
-document.getElementById("boutonDelais").addEventListener("click",()=>calculDelais()) ///BLOC DES DELAIS
+document
+  .getElementById("saisieDateSignature")
+  .addEventListener("change", () => {
+    document.getElementById("wrapperCalendrier").innerHTML = "";
+    calculDelais();
+  });
 
-export function calculDelais() {
-  const tabFeries = [
-    "01/01",
-    "21/04",
-    "01/05",
-    "08/05",
-    "29/05",
-    "09/06",
-    "14/07",
-    "15/08",
-    "01/11",
-    "11/11",
-    "25/12",
-  ]; //ce tableau est amené à être remplacé par l'API jours fériés d'Api : https://calendrier.api.gouv.fr/jours-feries/metropole.json
-    
+export async function calculDelais() {
   const saisieDateSignature = document.getElementById("saisieDateSignature");
-
-  if (saisieDateSignature.value === "") {
-    return alert("La date de signature de la convention n'est pas renseignée");
-  }
+  let date = new Date(saisieDateSignature.value);
+  const tabFeries = await getApiPublicHollidays();
 
   const options = {
     weekday: "long",
@@ -27,7 +16,12 @@ export function calculDelais() {
     month: "long",
     day: "numeric",
   };
+
   let calendrier = document.getElementById("calendrier");
+
+  if (saisieDateSignature.value === "") {
+    return alert("La date de signature de la convention n'est pas renseignée");
+  }
 
   if (calendrier === null) {
     calendrier = document.createElement("div");
@@ -37,12 +31,8 @@ export function calculDelais() {
     calendrier.innerHTML = "";
   }
 
-  const wrapperCalendrier = document.getElementById("wrapperCalendrier")
+  const wrapperCalendrier = document.getElementById("wrapperCalendrier");
   wrapperCalendrier.appendChild(calendrier);
-
-
-
-  let date = new Date(saisieDateSignature.value);
 
   addDate(1);
   addDescription("Début du délai de reflexion :");
@@ -91,7 +81,7 @@ export function calculDelais() {
   // Mets simplement à jour la date du nombre de jours à ajouter au délai
   function addDate(nbDaysAdd) {
     date = new Date(date.setDate(date.getDate() + nbDaysAdd));
-  } 
+  }
 
   //controle si le dernier jour est un samedi ou un dimanche
   function controleSamediDimanche() {
@@ -117,16 +107,19 @@ export function calculDelais() {
   }
 
   // controle si le dernier jour d'un délai est un jour férié présent dans le tableau des jours fériés
-  function controleFeries() {
-    const dayMonthYear = date.toLocaleDateString("fr");
-    const dayMonth = dayMonthYear.slice(0, 5);
-    if (tabFeries.find((jFerie) => jFerie === dayMonth)) {
+  async function controleFeries() {
+    const dayToFind = date.toLocaleDateString("fr");
+
+    if (tabFeries.find((jFerie) => jFerie === dayToFind)) {
+      console.log("j'ai trouvé cette date à la fin du délai : " + dayToFind);
       date.setDate(date.getDate() + 1);
+    } else {
+      ("je n'ai rien trouvé");
     }
   }
 
   //controle si un jour férié est présent pendant le délai d'homologation (spécificité de cette nature de délai)
-  function jourFerieInDelai(nbDaysAdd) {
+  async function jourFerieInDelai(nbDaysAdd) {
     const tabFinal = [];
     for (let i = 0; i < nbDaysAdd; i++) {
       //construit un tableau avec l'ensemble des jours existant dans le délai artyhmétique d'homologation
@@ -134,15 +127,42 @@ export function calculDelais() {
       currentDate.setDate(date.getDate() + i);
       tabFinal.push(currentDate.toLocaleDateString("fr"));
     }
-    console.log(tabFinal);
 
     for (let i = 0; i < tabFinal.length; i++) {
       // boucle pour vérifier s'il existe dans le tableau précédement crée un jour férié qui correspond
-      const dayMonth = tabFinal[i].slice(0, 5);
-      if (tabFeries.find((jFerie) => jFerie === dayMonth)) {
-        console.log(`le jour férié est le ${dayMonth}`);
+      if (tabFeries.find((jFerie) => jFerie === tabFinal[i])) {
+        console.log(`le jour férié dans le délai est le ${tabFinal[i]}`);
         addDate(1); //ajoute une journée au délai d'homologation
+      } else {
+        ("je n'ai rien trouvé");
       }
     }
+  }
+
+  async function getApiPublicHollidays() {
+    const [reponseYone, reponseYtwo] = await Promise.all([
+      fetch(
+        `https://calendrier.api.gouv.fr/jours-feries/metropole/${date.getFullYear()}.json`,
+      ),
+      fetch(
+        `https://calendrier.api.gouv.fr/jours-feries/metropole/${
+          date.getFullYear() + 1
+        }.json`,
+      ),
+    ]);
+    const [ferieApiOne, ferieApiTwo] = await Promise.all([
+      reponseYone.json(),
+      reponseYtwo.json(),
+    ]);
+    const mergedFeries = [
+      ...Object.keys(ferieApiOne).map((date) =>
+        new Date(date).toLocaleDateString("fr"),
+      ),
+      ...Object.keys(ferieApiTwo).map((date) =>
+        new Date(date).toLocaleDateString("fr"),
+      ),
+    ];
+
+    return mergedFeries;
   }
 }

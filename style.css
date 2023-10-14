@@ -45,11 +45,9 @@ h2 {
 #calendrier div p:first-child {
   width: 50%;
 }
-button {
+button, select, input[type=date] {
   border: none;
-  padding-left: 12px;
-  padding-right: 12px;
-  margin-left: 16px;
+
   text-align: center;
   text-decoration: none;
   background-color: #fefff5;
@@ -104,7 +102,7 @@ button {
   margin-right: 8px;
 }
 
-#affichageTotalAbsence, #affichageSalaireReference {
+#affichageTotalAbsence, #affichageSalaireReference, #affichageIndemnite {
   padding: 8px 8px 8px 0px;
   font-size: larger;
 }
@@ -117,7 +115,7 @@ button {
   max-width: 30%;
   padding: 8px;
   text-align: justify;
-  animation: fadein 4s;
+  animation: fadein 5s;
   font-style: italic;
   font-size: small;
   color: rgb(148, 172, 245);
@@ -138,12 +136,20 @@ input[type=number] {
 }
 
 @media screen and (max-width: 800px){
+  main {
+    max-width: 100%;
+    padding: 8px;
+    border-width: 0.1em;
+    border-color: rgb(119, 119, 119);
+  }
   #wrapperCalendrier {
     flex-direction: column;
   }
   #notice, #calendrier {
     max-width : 100%;
     width: 100%;
+    padding : 0px ;
+    padding-top: 8px;
     
   }
   #calendrier div p:first-child {
@@ -151,6 +157,15 @@ input[type=number] {
   }
 
   #calendrier div {
+    font-size: x-small;
     justify-content: space-between;
+    border-bottom: solid;
+    border-width: 0.1em;
+    border-color: rgb(119, 119, 119);
   }
+
+  #calendrier div p {
+    border: none;
+  }
+
 }
