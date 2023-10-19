@@ -4,89 +4,120 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Boite à outils de la rupture du contrat de travail</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200&family=Montserrat:wght@100&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <script type="module" src="script.js" defer></script>
   </head>
   <body>
     <main>
-      <h2>Calcul des délais de rupture conventionnelle</h2>
-      <div id="blocDelais">
+      <h1>RUPTURE</h1>
+      <h2 id="titleDelais">Calcul des délais</h2>
+      <div id="delais">
         <div class="menu-h">
-          <p>Date de signature de la convention de rupture :</p>
-          <input id="saisieDateSignature" type="date" />
+          <label for="selectorNatureDelais">Type de délai</label>
+          <select name="selectorNatureDelais" id="selectorNatureDelais">
+            <option value="licenciement">Délais de licenciement</option>
+            <option value="ruptureCo">Délais de rupture conventionnelle</option>
+          </select>
         </div>
-        <div id="wrapperCalendrier"></div>
-      </div>
-      <h2>Calcul de l'ancienneté</h2>
-      <div class="menu-h">
-        <div class="item-v">
-          <p>Date d'embauche</p>
-          <input id="dateEmbauche" type="date" />
-        </div>
-        <div class="item-v">
-          <p>Date de rupture</p>
-          <input id="dateRupture" type="date" />
-        </div>
-        <div id="affichageAnciennete"></div>
-      </div>
-      <h3>Décompte des absences</h3>
-      <div id="blocAbsence">
-        <div class="decompteAbsence">
+        <div id="blocDelais">
           <div class="menu-h">
-            <div class="item-v">
-              <p><label for="natureAbsence">Nature de l'absence</label></p>
-              <select name="natureAbsence" id="natureAbsence">
-                <option value="1">Absence maladie, sans solde ....</option>
-                <option value="0.5">Congé parental</option>
-              </select>
-            </div>
-            <div class="item-v">
-              <p>Début d'absence</p>
-              <input id="debutAbsence" type="date" />
-            </div>
-            <div class="item-v">
-              <p>Fin d'absence</p>
-              <input id="finAbsence" type="date" />
-            </div>
-            <button id="ajout">Ajout</button>
+            <label for="startDate"
+              >Date de signature de la convention de rupture :</label
+            >
+            <input id="startDate" type="date" />
           </div>
-          <div id="datesEnregistrees"></div>
+          <div id="wrapperCalendrier"></div>
         </div>
       </div>
-      <h2>Calcul du salaire de référence</h2>
-      <div id="blocSalaireReference">
+
+      <h2 id="titleAnciennete">Calcul de l'ancienneté</h2>
+      <div id="anciennete">
         <div class="menu-h">
-          <label for="dernierMois">Dernier mois rémunéré connu </label>
-          <select name="dernierMois" id="dernierMois">
-            <option value="0">Janvier</option>
-            <option value="1">Février</option>
-            <option value="2">Mars</option>
-            <option value="3">Avril</option>
-            <option value="4">Mai</option>
-            <option value="5">Juin</option>
-            <option value="6">Juillet</option>
-            <option value="7">Aout</option>
-            <option value="8">Septembre</option>
-            <option value="9">Octobre</option>
-            <option value="10">Novembre</option>
-            <option value="11">Décembre</option>
-          </select>
-          <select name="annee" id="annee">
-            <option value=""></option>
-            <option value=""></option>
-            <option value=""></option>
+          <div class="item-v">
+            <p>Date d'embauche</p>
+            <input id="dateEmbauche" type="date" />
+          </div>
+          <div class="item-v">
+            <p>Date de rupture</p>
+            <input id="dateRupture" type="date" />
+          </div>
+          <div id="affichageAnciennete"></div>
+        </div>
+        <h3>Décompte des absences</h3>
+        <div id="blocAbsence">
+          <div class="decompteAbsence">
+            <div class="menu-h">
+              <div class="item-v">
+                <p><label for="natureAbsence">Nature de l'absence</label></p>
+                <select name="natureAbsence" id="natureAbsence">
+                  <option value="1">Absence maladie, sans solde ....</option>
+                  <option value="0.5">Congé parental</option>
+                </select>
+              </div>
+              <div class="item-v">
+                <p>Début d'absence</p>
+                <input id="debutAbsence" type="date" />
+              </div>
+              <div class="item-v">
+                <p>Fin d'absence</p>
+                <input id="finAbsence" type="date" />
+              </div>
+              <button id="ajout">Ajout</button>
+            </div>
+            <div id="datesEnregistrees"></div>
+          </div>
+        </div>
+      </div>
+
+      <h2 id="titleSalaire">Calcul du salaire de référence</h2>
+      <div id="salaire">
+        <div id="blocSalaireReference">
+          <div class="menu-h">
+            <label for="dernierMois">Dernier mois rémunéré connu </label>
+            <select name="dernierMois" id="dernierMois">
+              <option value="0">Janvier</option>
+              <option value="1">Février</option>
+              <option value="2">Mars</option>
+              <option value="3">Avril</option>
+              <option value="4">Mai</option>
+              <option value="5">Juin</option>
+              <option value="6">Juillet</option>
+              <option value="7">Aout</option>
+              <option value="8">Septembre</option>
+              <option value="9">Octobre</option>
+              <option value="10">Novembre</option>
+              <option value="11">Décembre</option>
+            </select>
+            <select name="annee" id="annee">
+              <option value=""></option>
+              <option value=""></option>
+              <option value=""></option>
+            </select>
+          </div>
+          <form action="" class="menu-h" id="moisSalaireRef"></form>
+        </div>
+      </div>
+
+      <h2 id="titleIndemnite">Calcul des indemnités</h2>
+      <div id="indemnite">
+        <div id="blocIndemnites">
+          <label for="selectorNatureRupture">Nature de rupture</label>
+          <select name="selectorNatureRupture" id="selectorNatureRupture">
+            <option value="Licenciement">
+              Licenciement, Rupture conventionnelle, Mise à la retraite...
+            </option>
+            <option value="departRetraite">
+              Départ volontaire à la retraite
+            </option>
           </select>
         </div>
-        <form action="" class="menu-h" id="moisSalaireRef"></form>
-      </div>
-      <h2>Calcul des indemnités</h2>
-      <div id="blocIndemnites">
-        <label for="selectorNatureRupture" >Nature de rupture</label>
-        <select name="selectorNatureRupture" id="selectorNatureRupture">
-          <option value="Licenciement">Licenciement, Rupture conventionnelle, Mise à la retraite...</option>
-          <option value="departRetraite">Départ volontaire à la retraite</option>
-        </select>
       </div>
     </main>
   </body>

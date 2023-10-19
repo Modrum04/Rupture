@@ -1,6 +1,8 @@
 body {
-  background-color: #141517;
+  background-color: #313e50;
   color: #fefff5;
+
+  font-family: "Montserrat", sans-serif;
 }
 
 main {
@@ -9,15 +11,39 @@ main {
   flex-direction: column;
   margin: auto;
   border: solid;
+  border-width: 0.15em;
+  border-color: darkgray;
   padding: 32px;
 }
-
+h1 {
+  text-align: center;
+  margin: 0;
+}
 h2 {
   text-align: left;
+  cursor: pointer;
+  background-color: #3a435e;
+  border-top: solid;
+  border-width: 0.05em;
+  margin-bottom: 0%;
+  padding-bottom: 0.83em;
+  padding-left: 6px;
+  border-color: rgb(119, 119, 119);
+  user-select: none;
 }
 
-#saisieDateSignature{
-  margin : 8px;
+#delais,
+#anciennete,
+#salaire,
+#indemnite {
+  display: none;
+  background-color: #3a435e;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+#saisieDateSignature {
+  margin: 8px;
 }
 #calendrier {
   display: flex;
@@ -45,13 +71,16 @@ h2 {
 #calendrier div p:first-child {
   width: 50%;
 }
-button, select, input[type=date] {
+button,
+select,
+input[type="date"] {
   border: none;
 
   text-align: center;
   text-decoration: none;
   background-color: #fefff5;
   color: black;
+  max-width: -webkit-fill-available;
 }
 
 .item-v {
@@ -92,7 +121,7 @@ button, select, input[type=date] {
 .menu-h {
   display: flex;
   flex-direction: row;
-  align-items:last baseline;
+  align-items: last baseline;
   flex-wrap: wrap;
   max-width: inherit;
   padding-bottom: 8px;
@@ -102,7 +131,9 @@ button, select, input[type=date] {
   margin-right: 8px;
 }
 
-#affichageTotalAbsence, #affichageSalaireReference, #affichageIndemnite {
+#affichageTotalAbsence,
+#affichageSalaireReference,
+#affichageIndemnite {
   padding: 8px 8px 8px 0px;
   font-size: larger;
 }
@@ -121,7 +152,7 @@ button, select, input[type=date] {
   color: rgb(148, 172, 245);
 }
 
-input[type=number] {
+input[type="number"] {
   appearance: textfield;
   width: 70%;
 }
@@ -135,7 +166,7 @@ input[type=number] {
   }
 }
 
-@media screen and (max-width: 800px){
+@media screen and (max-width: 800px) {
   main {
     max-width: 100%;
     padding: 8px;
@@ -145,12 +176,12 @@ input[type=number] {
   #wrapperCalendrier {
     flex-direction: column;
   }
-  #notice, #calendrier {
-    max-width : 100%;
+  #notice,
+  #calendrier {
+    max-width: 100%;
     width: 100%;
-    padding : 0px ;
+    padding: 0px;
     padding-top: 8px;
-    
   }
   #calendrier div p:first-child {
     width: fit-content;
@@ -167,5 +198,4 @@ input[type=number] {
   #calendrier div p {
     border: none;
   }
-
 }

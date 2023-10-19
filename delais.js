@@ -1,14 +1,24 @@
-document
-  .getElementById("saisieDateSignature")
-  .addEventListener("change", () => {
-    document.getElementById("wrapperCalendrier").innerHTML = "";
-    calculDelais();
-  });
+const labelDate = document.querySelector('[for="startDate"]');
+const selectorNatureDelais = document.getElementById("selectorNatureDelais");
+selectorNatureDelais.value = "";
+labelDate.innerText = "";
+document.getElementById("startDate").style.display = "none";
 
-export async function calculDelais() {
-  const saisieDateSignature = document.getElementById("saisieDateSignature");
-  let date = new Date(saisieDateSignature.value);
-  const tabFeries = await getApiPublicHollidays();
+selectorNatureDelais.addEventListener("change", () => {
+  document.getElementById("startDate").style.display = "";
+  calculDelais();
+  selectorNatureDelais.value === "licenciement"
+    ? (labelDate.innerText =
+        "Date d'envoi de la convocation à entretien préalable :")
+    : (labelDate.innerText = "Date de signature de la convention de rupture :");
+});
+
+export function calculDelais() {
+  document.getElementById("wrapperCalendrier").innerHTML = "";
+  const startDate = document.getElementById("startDate");
+  startDate.value = "";
+  let date = 0;
+  let tabFeries = [];
 
   const options = {
     weekday: "long",
@@ -17,68 +27,122 @@ export async function calculDelais() {
     day: "numeric",
   };
 
-  let calendrier = document.getElementById("calendrier");
-
-  if (saisieDateSignature.value === "") {
-    return alert("La date de signature de la convention n'est pas renseignée");
-  }
-
-  if (calendrier === null) {
-    calendrier = document.createElement("div");
-    calendrier.setAttribute("id", "calendrier");
-  } else {
-    calendrier = document.getElementById("calendrier");
-    calendrier.innerHTML = "";
-  }
-
-  const wrapperCalendrier = document.getElementById("wrapperCalendrier");
-  wrapperCalendrier.appendChild(calendrier);
-
-  addDate(1);
-  addDescription("Début du délai de reflexion :");
-
-  addDate(14);
-  controleSamediDimanche();
-  controleFeries();
-  addDescription("Fin du délai de reflexion :");
-
-  addDate(1);
-  addDescription("Envoi de la convention :");
-
-  addDate(1);
-  controleSamediDimanche();
-  controleFeries();
-  addDescription(`Debut du délai d'homologation :`);
-
-  jourFerieInDelai(16);
-
-  addDate(16);
-
-  controleSamediDimanche();
-  controleFeries();
-  addDescription(`Fin du délai d'homologation :`);
-
-  addDate(1);
-  addDescription(`Rupture possible à partir du :`);
-
-  let notice = document.getElementById("notice");
-
-  if (notice === null) {
-    notice = document.createElement("div");
-    notice.setAttribute("id", "notice");
-  } else {
-    notice = document.getElementById("notice");
-    notice.innerHTML = "";
-  }
-  wrapperCalendrier.appendChild(notice);
-
-  const texteNotice = `La présente simulation tient compte du fait que lorsque le dernier jour du délai tombe un samedi, un dimanche, ou un jour férié, il est prorogé jusqu'au premier jour ouvrable suivant. 
-     Elle tient également compte du fait que le délai d'homologation est établi sur la base de jours ouvrables, excluant les jours fériés, et est susceptible d'être prorogé en conséquence.`;
-  notice.innerText = texteNotice;
+  startDate.addEventListener("change", async () => {
+    document.getElementById("wrapperCalendrier").innerHTML = "";
+    date = new Date(startDate.value);
+    tabFeries = await getApiPublicHollidays();
+    selectorNatureDelais.value === "licenciement"
+      ? calculDelaisLicenciement()
+      : calculDelaisRuptureCo();
+  });
 
   ///////////////////////DECLARATION DES FONCTIONS LOCALES/////////////////////////////
+  function calculDelaisLicenciement() {
+    let calendrier = document.getElementById("calendrier");
+
+    if (startDate.value === "") {
+      return alert("La date de départ n'est pas renseignée");
+    }
+
+    if (calendrier === null) {
+      calendrier = document.createElement("div");
+      calendrier.setAttribute("id", "calendrier");
+    } else {
+      calendrier = document.getElementById("calendrier");
+      calendrier.innerHTML = "";
+    }
+
+    const wrapperCalendrier = document.getElementById("wrapperCalendrier");
+    wrapperCalendrier.appendChild(calendrier);
+
+    addDate(6);
+    controleSamediDimanche();
+    controleFeries();
+    addDescription("Date d'entretien préalable :");
+
+    addDate(3);
+    controleSamediDimanche();
+    controleFeries();
+    addDescription("Date d'envoi de la notification :");
+
+    let notice = document.getElementById("notice");
+
+    if (notice === null) {
+      notice = document.createElement("div");
+      notice.setAttribute("id", "notice");
+    } else {
+      notice = document.getElementById("notice");
+      notice.innerHTML = "";
+    }
+    wrapperCalendrier.appendChild(notice);
+
+    const texteNotice = `La présente simulation tient compte du fait que lorsque le dernier jour du délai tombe un samedi, un dimanche, ou un jour férié, il est prorogé jusqu'au premier jour ouvrable suivant.`;
+    notice.innerText = texteNotice;
+  }
+
+  function calculDelaisRuptureCo() {
+    let calendrier = document.getElementById("calendrier");
+
+    if (startDate.value === "") {
+      return alert("La date de départ n'est pas renseignée");
+    }
+
+    if (calendrier === null) {
+      calendrier = document.createElement("div");
+      calendrier.setAttribute("id", "calendrier");
+    } else {
+      calendrier = document.getElementById("calendrier");
+      calendrier.innerHTML = "";
+    }
+
+    const wrapperCalendrier = document.getElementById("wrapperCalendrier");
+    wrapperCalendrier.appendChild(calendrier);
+
+    addDate(1);
+    addDescription("Début du délai de reflexion :");
+
+    addDate(14);
+    controleSamediDimanche();
+    controleFeries();
+    addDescription("Fin du délai de reflexion :");
+
+    addDate(1);
+    addDescription("Envoi de la convention :");
+
+    addDate(1);
+    controleSamediDimanche();
+    controleFeries();
+    addDescription(`Debut du délai d'homologation :`);
+
+    jourFerieInDelai(16);
+
+    addDate(16);
+
+    controleSamediDimanche();
+    controleFeries();
+    addDescription(`Fin du délai d'homologation :`);
+
+    addDate(1);
+    addDescription(`Rupture possible à partir du :`);
+
+    let notice = document.getElementById("notice");
+
+    if (notice === null) {
+      notice = document.createElement("div");
+      notice.setAttribute("id", "notice");
+    } else {
+      notice = document.getElementById("notice");
+      notice.innerHTML = "";
+    }
+    wrapperCalendrier.appendChild(notice);
+
+    const texteNotice = `La présente simulation tient compte du fait que lorsque le dernier jour du délai tombe un samedi, un dimanche, ou un jour férié, il est prorogé jusqu'au premier jour ouvrable suivant. 
+     Elle tient également compte du fait que le délai d'homologation est établi sur la base de jours ouvrables, excluant les jours fériés, et est susceptible d'être prorogé en conséquence.`;
+    notice.innerText = texteNotice;
+  }
 
   // Mets simplement à jour la date du nombre de jours à ajouter au délai
+
   function addDate(nbDaysAdd) {
     date = new Date(date.setDate(date.getDate() + nbDaysAdd));
   }

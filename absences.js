@@ -1,6 +1,6 @@
-import {calculAnciennete} from './anciennete.js'
-import { calculIndemnites } from './indemnites.js';
-import { calculSalaireRef } from './salaires.js';
+import { calculAnciennete } from "./anciennete.js";
+import { calculIndemnites } from "./indemnites.js";
+import { calculSalaireRef } from "./salaires.js";
 export const tabAbsence = [];
 
 const debutAbsence = document.getElementById("debutAbsence");
@@ -9,7 +9,9 @@ const natureAbsence = document.getElementById("natureAbsence");
 
 let id = 0;
 let totalAbsence = 0;
-document.getElementById("ajout").addEventListener("click",()=> controleDatesAbsence ()) ///AJOUT DES ABSENCES
+document
+  .getElementById("ajout")
+  .addEventListener("click", () => controleDatesAbsence()); ///AJOUT DES ABSENCES
 
 ///fonction controle des dates
 export function controleDatesAbsence() {
@@ -29,7 +31,9 @@ function addDate(debutAbsence, finAbsence, tabAbsence) {
   const datesEnregistrees = document.getElementById("datesEnregistrees");
   const ligne = document.createElement("div");
   const dateResult =
-    (((new Date(finAbsence.value)) - (new Date(debutAbsence.value))) / (8.64 * Math.pow(10, 7)) + 1) *
+    ((new Date(finAbsence.value) - new Date(debutAbsence.value)) /
+      (8.64 * Math.pow(10, 7)) +
+      1) *
     natureAbsence.value;
 
   ///vérification que l'id n'existe pas déjà dans tabAbsence pour éviter un blocage lors de la suppression de l'absence de l'affichage du DOM
@@ -73,15 +77,13 @@ function addDate(debutAbsence, finAbsence, tabAbsence) {
         elem.duree === dateResult,
     );
     tabAbsence.splice(indexAbsence, 1);
-    calculAnciennete()
-    calculSalaireRef()
-    calculIndemnites()
-
-
+    calculAnciennete();
+    calculSalaireRef();
+    calculIndemnites();
   });
-  calculAnciennete()
-  calculSalaireRef()
-  calculIndemnites()
+  calculAnciennete();
+  calculSalaireRef();
+  calculIndemnites();
 }
 
 ///Calcul du total d'absence
@@ -104,12 +106,7 @@ export function calculTotalAbsence(tabAbsence) {
   } else {
     ligneSaisie.innerHTML = "";
   }
- console.log("total absence calculé :"+totalAbsence)
+  console.log("total absence calculé :" + totalAbsence);
 
-  return totalAbsence
+  return totalAbsence;
 }
-
-
-
-
-
