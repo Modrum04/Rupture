@@ -13,7 +13,7 @@ selectorNatureDelais.addEventListener("change", () => {
     : (labelDate.innerText = "Date de signature de la convention de rupture :");
 });
 
-export function calculDelais() {
+function calculDelais() {
   document.getElementById("wrapperCalendrier").innerHTML = "";
   const startDate = document.getElementById("startDate");
   startDate.value = "";
@@ -39,10 +39,6 @@ export function calculDelais() {
   ///////////////////////DECLARATION DES FONCTIONS LOCALES/////////////////////////////
   function calculDelaisLicenciement() {
     let calendrier = document.getElementById("calendrier");
-
-    if (startDate.value === "") {
-      return alert("La date de départ n'est pas renseignée");
-    }
 
     if (calendrier === null) {
       calendrier = document.createElement("div");
@@ -82,10 +78,6 @@ export function calculDelais() {
 
   function calculDelaisRuptureCo() {
     let calendrier = document.getElementById("calendrier");
-
-    if (startDate.value === "") {
-      return alert("La date de départ n'est pas renseignée");
-    }
 
     if (calendrier === null) {
       calendrier = document.createElement("div");

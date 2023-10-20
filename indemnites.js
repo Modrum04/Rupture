@@ -51,15 +51,15 @@ export function calculIndemnites() {
 
         break;
       case ancienneteA >= 10 && ancienneteA < 15:
-        indemniteRetraiteTotale = salaireRef / 2;
+        indemniteRetraiteTotale = Math.floor((salaireRef / 2)*100)/100;
 
         break;
       case ancienneteA >= 15 && ancienneteA < 20:
-        indemniteRetraiteTotale = salaireRef;
+        indemniteRetraiteTotale = Math.floor(salaireRef*100)/100;
 
         break;
       case ancienneteA >= 20 && ancienneteA < 30:
-        indemniteRetraiteTotale = salaireRef * 1.5;
+        indemniteRetraiteTotale = Math.floor((salaireRef * 1.5)*100)/100;
 
         break;
       case ancienneteA >= 30:
@@ -68,7 +68,6 @@ export function calculIndemnites() {
         break;
       default:
     }
-    return indemniteRetraiteTotale;
   }
 
   function displayIndemnite(description, indemniteLcmntTotale) {
@@ -83,7 +82,7 @@ export function calculIndemnites() {
 
     affichageIndemnite.innerText =
       indemniteLcmntTotale <= 0 || isNaN(indemniteLcmntTotale)
-        ? ""
+        ? "L'indemnité est nulle."
         : `L'indemnité légale de ${description} est estimée à ${indemniteLcmntTotale} euros.`;
     blocIndemnites.appendChild(affichageIndemnite);
   }

@@ -30,6 +30,7 @@ h2 {
   padding-left: 6px;
   border-color: rgb(119, 119, 119);
   user-select: none;
+  border-top-left-radius: 0.5em;
 }
 
 #delais,
@@ -75,12 +76,12 @@ button,
 select,
 input[type="date"] {
   border: none;
-
   text-align: center;
   text-decoration: none;
   background-color: #fefff5;
   color: black;
   max-width: -webkit-fill-available;
+  max-width: -moz-available;
 }
 
 .item-v {
