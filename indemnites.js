@@ -16,12 +16,12 @@ export function calculIndemnites() {
   let indemniteLcmntTotale = 0;
   let indemniteRetraiteTotale = 0;
 
-  if (selectorNatureRupture.value === "Licenciement") {
+if (selectorNatureRupture.value === "Licenciement") {
     ancienneteA > 10
       ? (indemniteLcmntTotale = calculIndemniteLcmnt(10, ancienneteAplusDix, 3)) //si anciennete +10 ans
       : (indemniteLcmntTotale = calculIndemniteLcmnt(ancienneteA, 0, 4)); //si anciennete -10 max  ;
     displayIndemnite("licenciement", indemniteLcmntTotale);
-  } else {
+  } else if (selectorNatureRupture.value === "departRetraite"){
     calculIndemniteRetraite();
     displayIndemnite(
       "départ volontaire à la retraite",

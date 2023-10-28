@@ -6,15 +6,12 @@
   "description": "Outil de simulation de rupture de contrat de travail (délais de rupture conventionnelle, indemnités de licenciement, de rupture conventionnelle, de départ en retraite...)",
   "author": "Tristan Laroye",
   "devDependencies": {
-    "@electron-forge/publisher-github": "^6.4.2",
-    "electron": "^26.3.0",
     "eslint": "^8.50.0"
   },
   "scripts": {
-    "start": "electron .",
     "lint": "eslint *.js"
   },
   "dependencies": {
-    "update-electron-app": "^2.0.1"
+    "jspdf": "^2.5.1"
   }
 }

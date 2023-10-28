@@ -50,28 +50,29 @@ h2 {
   display: flex;
   flex-direction: column;
   padding: 8px;
-  width: 45%;
+
+  max-width: fit-content;
   justify-content: space-between;
+  margin-top: 0;
 }
 
-#calendrier div {
-  display: flex;
-  flex-direction: row;
-  font-size: small;
-  flex-wrap: wrap;
-}
 
-#calendrier div p {
+
+#calendrier li {
   padding: 0px;
+
   margin: 0px;
+  margin-bottom: 5px;
   border-bottom: solid;
   border-width: 0.1em;
   border-color: rgb(119, 119, 119);
+  list-style-type: none;
+
+
 }
 
-#calendrier div p:first-child {
-  width: 50%;
-}
+
+
 button,
 select,
 input[type="date"] {
@@ -82,6 +83,10 @@ input[type="date"] {
   color: black;
   max-width: -webkit-fill-available;
   max-width: -moz-available;
+}
+
+#affichageAnciennete{
+  align-self: flex-end;
 }
 
 .item-v {

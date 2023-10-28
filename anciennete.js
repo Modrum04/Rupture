@@ -31,9 +31,9 @@ export function calculAnciennete(){
     const ancienneteA = ancienneteJ/365.25
     const ancienneteDecimalM = (ancienneteA-Math.floor(ancienneteA))*12
     if (ancienneteJ>0){
-        affichageAnciennete.innerText=`L'ancienneté décomptée est de ${Math.floor(ancienneteA)} ${ancienneteA > 2 ? "ans" : "an"} et ${Math.floor(ancienneteDecimalM)} mois
-        ${ancienneteA > 10 ? (`Dont ` + Math.floor(ancienneteA-10) + ` ans et ${Math.floor(ancienneteDecimalM)} mois au delà de 10 ans`) : ""}
-        Durée d'absence déduite du calcul : ${absenceAdeduire} jours`
+        affichageAnciennete.innerText=`L'ancienneté décomptée est de ${Math.floor(ancienneteA)} ${ancienneteA > 2 ? "ans" : "an"} et ${Math.floor(ancienneteDecimalM)} mois`+
+        `${ancienneteA > 10 ? (`\n dont ` + Math.floor(ancienneteA-10) + `${ancienneteA < 12 ? ` an` :` ans`} et ${Math.floor(ancienneteDecimalM)} mois au delà de 10 ans`) : "" }`
+        affichageAnciennete.innerText+=`\n ${absenceAdeduire > 0 ? (`Durée d'absence déduite du calcul : `+ absenceAdeduire + ` jours`): "Aucune absence déduite"}`
     }else{
         affichageAnciennete.innerText="L'ancienneté calculée est nulle"
     }

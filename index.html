@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Boite à outils de la rupture du contrat de travail</title>
+
+  
+    <script type="module" src="script.js" defer></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,7 +16,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-    <script type="module" src="script.js" defer></script>
+
+
+
   </head>
   <body>
     <main>
@@ -28,9 +34,7 @@
         </div>
         <div id="blocDelais">
           <div class="menu-h">
-            <label for="startDate"
-              >Date de signature de la convention de rupture :</label
-            >
+            <label for="startDate">Date de signature de la convention de rupture :</label>
             <input id="startDate" type="date" />
           </div>
           <div id="wrapperCalendrier"></div>
@@ -57,7 +61,7 @@
               <div class="item-v">
                 <p><label for="natureAbsence">Nature de l'absence</label></p>
                 <select name="natureAbsence" id="natureAbsence">
-                  <option value="1">Absence maladie, sans solde ....</option>
+                  <option value="1">Absence maladie, sans solde ...</option>
                   <option value="0.5">Congé parental</option>
                 </select>
               </div>
@@ -119,6 +123,7 @@
           </select>
         </div>
       </div>
+      <button id="buttonPdf">Génerer un PDF</button>
     </main>
   </body>
 </html>
