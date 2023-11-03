@@ -9,9 +9,7 @@ const natureAbsence = document.getElementById("natureAbsence");
 
 let id = 0;
 let totalAbsence = 0;
-document
-  .getElementById("ajout")
-  .addEventListener("click", () => controleDatesAbsence()); ///AJOUT DES ABSENCES
+document.getElementById("ajout").addEventListener("click", () => controleDatesAbsence()); ///AJOUT DES ABSENCES
 
 ///fonction controle des dates
 export function controleDatesAbsence() {
@@ -27,14 +25,11 @@ export function controleDatesAbsence() {
 
 ///fonction d'ajout d'absence
 function addDate(debutAbsence, finAbsence, tabAbsence) {
-  const absence = { id: "", duree: "" };
+  const absence = { id: "", duree: "", dateFrom: "", dateTo: "" };
   const datesEnregistrees = document.getElementById("datesEnregistrees");
   const ligne = document.createElement("div");
   const dateResult =
-    ((new Date(finAbsence.value) - new Date(debutAbsence.value)) /
-      (8.64 * Math.pow(10, 7)) +
-      1) *
-    natureAbsence.value;
+    ((new Date(finAbsence.value) - new Date(debutAbsence.value)) / (8.64 * Math.pow(10, 7)) + 1) * natureAbsence.value;
 
   ///vérification que l'id n'existe pas déjà dans tabAbsence pour éviter un blocage lors de la suppression de l'absence de l'affichage du DOM
   if (tabAbsence.find((element) => element.id === id)) {
@@ -47,15 +42,15 @@ function addDate(debutAbsence, finAbsence, tabAbsence) {
 
   absence.id = id;
   absence.duree = dateResult;
+  absence.dateFrom = debutAbsence.value;
+  absence.dateTo = finAbsence.value;
   tabAbsence.push(absence);
 
   datesEnregistrees.appendChild(ligne);
   ligne.setAttribute("id", "ligne " + id);
   ligne.innerText = `Du ${debutAbsence.valueAsDate.toLocaleDateString(
     "fr",
-  )} au ${finAbsence.valueAsDate.toLocaleDateString(
-    "fr",
-  )} soit ${dateResult} jours d'absence ${
+  )} au ${finAbsence.valueAsDate.toLocaleDateString("fr")} soit ${dateResult} jours d'absence ${
     natureAbsence.value === "0.5"
       ? "en congé parental (déduite de l'ancienneté à 50%)"
       : "intégralement déduite de l'ancienneté"
@@ -68,22 +63,21 @@ function addDate(debutAbsence, finAbsence, tabAbsence) {
 
   ////Gestion des suppression d'absence
   document.getElementById(id).addEventListener("click", (event) => {
-    event.currentTarget.parentElement.parentElement.removeChild(
-      event.currentTarget.parentElement,
-    );
+    event.currentTarget.parentElement.parentElement.removeChild(event.currentTarget.parentElement);
     const indexAbsence = tabAbsence.findIndex(
-      (elem) =>
-        elem.id === parseInt(event.currentTarget.id) &&
-        elem.duree === dateResult,
+      (elem) => elem.id === parseInt(event.currentTarget.id) && elem.duree === dateResult,
     );
     tabAbsence.splice(indexAbsence, 1);
     calculAnciennete();
     calculSalaireRef();
     calculIndemnites();
+    console.log(tabAbsence);
   });
   calculAnciennete();
   calculSalaireRef();
   calculIndemnites();
+
+  console.log(tabAbsence);
 }
 
 ///Calcul du total d'absence

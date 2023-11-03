@@ -9,62 +9,46 @@ selectorNatureRupture.addEventListener("change", () => calculIndemnites());
 export function calculIndemnites() {
   const salaireRef = calculSalaireRef();
   const ancienneteA = calculAnciennete();
-  const ancienneteDecimalM = Math.floor(
-    (ancienneteA - Math.floor(ancienneteA)) * 12,
-  );
+  const ancienneteDecimalM = Math.floor((ancienneteA - Math.floor(ancienneteA)) * 12);
   const ancienneteAplusDix = ancienneteA > 10 ? ancienneteA - 10 : 0;
   let indemniteLcmntTotale = 0;
   let indemniteRetraiteTotale = 0;
 
-if (selectorNatureRupture.value === "Licenciement") {
+  if (selectorNatureRupture.value === "Licenciement") {
     ancienneteA > 10
       ? (indemniteLcmntTotale = calculIndemniteLcmnt(10, ancienneteAplusDix, 3)) //si anciennete +10 ans
       : (indemniteLcmntTotale = calculIndemniteLcmnt(ancienneteA, 0, 4)); //si anciennete -10 max  ;
     displayIndemnite("licenciement", indemniteLcmntTotale);
-  } else if (selectorNatureRupture.value === "departRetraite"){
+  } else if (selectorNatureRupture.value === "departRetraite") {
     calculIndemniteRetraite();
-    displayIndemnite(
-      "départ volontaire à la retraite",
-      indemniteRetraiteTotale,
-    );
+    displayIndemnite("départ volontaire à la retraite", indemniteRetraiteTotale);
   }
 
   function calculIndemniteLcmnt(ancienneteA, ancienneteAplusDix, x) {
-    const indemniteMoinsDix =
-      Math.round((salaireRef / 4) * Math.floor(ancienneteA) * 100) / 100;
-    const indemnitePlusDix =
-      Math.round((salaireRef / 3) * Math.floor(ancienneteAplusDix) * 100) / 100;
-    const indemniteMois =
-      Math.round((((salaireRef / x) * ancienneteDecimalM) / 12) * 100) / 100;
-    const indemniteLcmntTotale =
-      Math.round((indemniteMoinsDix + indemniteMois + indemnitePlusDix) * 100) /
-      100;
+    const indemniteMoinsDix = Math.round((salaireRef / 4) * Math.floor(ancienneteA) * 100) / 100;
+    const indemnitePlusDix = Math.round((salaireRef / 3) * Math.floor(ancienneteAplusDix) * 100) / 100;
+    const indemniteMois = Math.round((((salaireRef / x) * ancienneteDecimalM) / 12) * 100) / 100;
+    const indemniteLcmntTotale = Math.round((indemniteMoinsDix + indemniteMois + indemnitePlusDix) * 100) / 100;
     console.log("indemnite de licenciement calculée : " + indemniteLcmntTotale);
     return indemniteLcmntTotale;
   }
 
   function calculIndemniteRetraite() {
-    console.log("module calcul retraite");
     switch (true) {
       case ancienneteA < 10:
         indemniteRetraiteTotale = 0;
-
         break;
       case ancienneteA >= 10 && ancienneteA < 15:
-        indemniteRetraiteTotale = Math.floor((salaireRef / 2)*100)/100;
-
+        indemniteRetraiteTotale = Math.floor((salaireRef / 2) * 100) / 100;
         break;
       case ancienneteA >= 15 && ancienneteA < 20:
-        indemniteRetraiteTotale = Math.floor(salaireRef*100)/100;
-
+        indemniteRetraiteTotale = Math.floor(salaireRef * 100) / 100;
         break;
       case ancienneteA >= 20 && ancienneteA < 30:
-        indemniteRetraiteTotale = Math.floor((salaireRef * 1.5)*100)/100;
-
+        indemniteRetraiteTotale = Math.floor(salaireRef * 1.5 * 100) / 100;
         break;
       case ancienneteA >= 30:
         indemniteRetraiteTotale = salaireRef * 2;
-
         break;
       default:
     }

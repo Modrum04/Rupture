@@ -6,14 +6,6 @@ import {} from "./export_pdf.js"
 import {} from "../node_modules/jspdf/dist/jspdf.umd.js"
 import {} from "../node_modules/html2canvas/dist/html2canvas.js"
 
-
-
-
-
-
-
-
-
 document.getElementById("titleDelais").addEventListener("click", () => {
   showHide("delais");
 });
@@ -25,6 +17,9 @@ document.getElementById("titleSalaire").addEventListener("click", () => {
 });
 document.getElementById("titleIndemnite").addEventListener("click", () => {
   showHide("indemnite");
+});
+document.getElementById("titleExport").addEventListener("click", () => {
+  showHide("export");
 });
 
 function showHide(blocToShow) {

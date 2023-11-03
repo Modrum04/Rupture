@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Boite à outils de la rupture du contrat de travail</title>
 
-  
     <script type="module" src="script.js" defer></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,9 +15,6 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-
-
-
   </head>
   <body>
     <main>
@@ -114,16 +110,15 @@
         <div id="blocIndemnites">
           <label for="selectorNatureRupture">Nature de rupture</label>
           <select name="selectorNatureRupture" id="selectorNatureRupture">
-            <option value="Licenciement">
-              Licenciement, Rupture conventionnelle, Mise à la retraite...
-            </option>
-            <option value="departRetraite">
-              Départ volontaire à la retraite
-            </option>
+            <option value="Licenciement">Licenciement, Rupture conventionnelle, Mise à la retraite...</option>
+            <option value="departRetraite">Départ volontaire à la retraite</option>
           </select>
         </div>
       </div>
-      <button id="buttonPdf">Génerer un PDF</button>
+      <h2 id="titleExport">Export PDF</h2>
+      <div id="export">
+        <button id="buttonPdf">Génerer un PDF</button>
+      </div>
     </main>
   </body>
 </html>

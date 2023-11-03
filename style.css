@@ -36,7 +36,8 @@ h2 {
 #delais,
 #anciennete,
 #salaire,
-#indemnite {
+#indemnite,
+#export {
   display: none;
   background-color: #3a435e;
   padding-left: 6px;
@@ -56,8 +57,6 @@ h2 {
   margin-top: 0;
 }
 
-
-
 #calendrier li {
   padding: 0px;
 
@@ -67,11 +66,7 @@ h2 {
   border-width: 0.1em;
   border-color: rgb(119, 119, 119);
   list-style-type: none;
-
-
 }
-
-
 
 button,
 select,
@@ -85,7 +80,7 @@ input[type="date"] {
   max-width: -moz-available;
 }
 
-#affichageAnciennete{
+#affichageAnciennete {
   align-self: flex-end;
 }
 
@@ -189,13 +184,9 @@ input[type="number"] {
     padding: 0px;
     padding-top: 8px;
   }
-  #calendrier div p:first-child {
-    width: fit-content;
-  }
 
-  #calendrier div {
+  #calendrier li {
     font-size: x-small;
-    justify-content: space-between;
     border-bottom: solid;
     border-width: 0.1em;
     border-color: rgb(119, 119, 119);
