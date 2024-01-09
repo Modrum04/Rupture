@@ -44,6 +44,7 @@ function calculDelais() {
 ///////////////////////DECLARATION DES FONCTIONS LOCALES/////////////////////////////
 
 function calculDelaisLicenciement(date,tabFeries) {
+  // date d'entretien préalable
   addDate(date,6);
   controleSamediDimanche(date);
   controleFeries(date,tabFeries);
@@ -53,6 +54,8 @@ function calculDelaisLicenciement(date,tabFeries) {
   controleSamediDimanche(date);
   controleFeries(date,tabFeries);
   addDescription(date,"Date d'envoi de la notification :");
+
+  
 
   let notice = document.getElementById("notice");
 
