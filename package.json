@@ -6,13 +6,24 @@
   "description": "Outil de simulation de rupture de contrat de travail (délais de rupture conventionnelle, indemnités de licenciement, de rupture conventionnelle, de départ en retraite...)",
   "author": "Tristan Laroye",
   "scripts": {
-    "clean-build": "rimraf node_modules ./package-lock.json",
-    "lint": "eslint *.js"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src vite.config.mjs --ext .js,.jsx,.mjs",
+    "clean-build": "rimraf node_modules ./package-lock.json"
   },
   "devDependencies": {
-    "eslint": "^8.50.0"
+    "@vitejs/plugin-react": "^6.1.1",
+    "eslint": "^8.50.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "vite": "^8.2.2"
   },
   "dependencies": {
-    "jspdf": "^2.5.1"
+    "@chakra-ui/react": "^3.37.0",
+    "@emotion/react": "^11.14.0",
+    "jspdf": "^4.2.1",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   }
 }

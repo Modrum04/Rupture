@@ -1,7 +1,9 @@
+import { jsPDF } from "jspdf";
+
 const boutonPdf = document.getElementById("buttonPdf");
 
 boutonPdf.addEventListener("click", () => {
-  const doc = new jspdf.jsPDF("p", "px", "a4");
+  const doc = new jsPDF("p", "px", "a4");
   let textAdded = false;
   let espace = 0;
   let textToSet = "";

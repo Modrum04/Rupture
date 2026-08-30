@@ -1,26 +1,32 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es2021": true
+  env: {
+    browser: true,
+    es2021: true,
+  },
+  extends: ["eslint:recommended", "plugin:react/recommended", "plugin:react-hooks/recommended"],
+  settings: {
+    react: {
+      version: "detect",
     },
-    "extends": "eslint:recommended",
-    "overrides": [
-        {
-            "env": {
-                "node": true
-            },
-            "files": [
-                ".eslintrc.{js,cjs}"
-            ],
-            "parserOptions": {
-                "sourceType": "script"
-            }
-        }
-    ],
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
+  },
+  overrides: [
+    {
+      env: {
+        node: true,
+      },
+      files: [".eslintrc.{js,cjs}", "vite.config.mjs"],
     },
-    "rules": {
-    }
-}
+  ],
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  rules: {
+    // Nouveau transform JSX de React 19 : plus besoin d'importer React.
+    "react/react-in-jsx-scope": "off",
+    "no-unused-vars": ["error", { varsIgnorePattern: "^_", argsIgnorePattern: "^_" }],
+  },
+};

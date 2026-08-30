@@ -3,8 +3,6 @@ import {} from "./anciennete.js";
 import {} from "./indemnites.js";
 import {} from "./salaires.js";
 import {} from "./export_pdf.js"
-import {} from "../node_modules/jspdf/dist/jspdf.umd.js"
-import {} from "../node_modules/html2canvas/dist/html2canvas.js"
 
 document.getElementById("titleDelais").addEventListener("click", () => {
   showHide("delais");
