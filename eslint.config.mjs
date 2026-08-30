@@ -32,6 +32,18 @@ export default [
     },
   },
 
+  {
+    files: ["**/*.jsx"],
+    rules: {
+      // Projet en JS sans TypeScript : la validation de props se ferait au prix
+      // d'une dépendance prop-types et d'un doublon de chaque signature.
+      "react/prop-types": "off",
+      // Interface en français : les apostrophes sont partout. On ne garde que
+      // les caractères réellement ambigus dans du JSX.
+      "react/no-unescaped-entities": ["error", { forbid: [">", "}"] }],
+    },
+  },
+
   // Fichiers de configuration : exécutés par Node, pas par le navigateur.
   {
     files: ["vite.config.mjs", "eslint.config.mjs"],

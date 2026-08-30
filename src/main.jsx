@@ -1,17 +1,19 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { ChakraProvider } from "@chakra-ui/react";
+import { ColorModeProvider } from "./components/color-mode.jsx";
+import { SimulationProvider } from "./state/SimulationContext.jsx";
 import { system } from "./theme.js";
 import App from "./App.jsx";
-import "./style.css";
-// Logique historique en DOM natif : elle s'accroche au balisage statique
-// d'index.html, en dehors du sous-arbre React.
-import "./legacy/script.js";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ChakraProvider value={system}>
-      <App />
+      <ColorModeProvider>
+        <SimulationProvider>
+          <App />
+        </SimulationProvider>
+      </ColorModeProvider>
     </ChakraProvider>
   </StrictMode>,
 );
